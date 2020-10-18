@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'detail_produk.dart';
+
 class ListProduk extends StatefulWidget {
   @override
   _ListProdukState createState() => _ListProdukState();
@@ -100,15 +102,35 @@ class _ListProdukState extends State<ListProduk> {
           gridDelegate:
               SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
           itemBuilder: (context, index) {
-            return GridTile(
-                footer: Container(
-                  color: Colors.white70,
-                  child: Column(
-                    children: <Widget>[Text(dataProduk[index]['nama'])],
-                  ),
+            return Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => DetailProduk(
+                              namaDetail: dataProduk[index]['nama'],
+                              gambarDetail: dataProduk[index]['gambar'],
+                              hargaDetail: dataProduk[index]['harga'],
+                              lokasiDetail: dataProduk[index]['lokasi'],
+                              detailDetail: dataProduk[index]['detail'])));
+                },
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: GridTile(
+                      footer: Container(
+                        color: Colors.white70,
+                        child: Column(
+                          children: <Widget>[Text(dataProduk[index]['nama'])],
+                        ),
+                      ),
+                      child: Image.asset(
+                          'images/produk/' + dataProduk[index]['gambar'])),
                 ),
-                child: Image.asset(
-                    'images/produk/' + dataProduk[index]['gambar']));
+              ),
+            );
           }),
     );
   }

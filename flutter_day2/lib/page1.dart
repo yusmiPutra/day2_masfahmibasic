@@ -37,18 +37,26 @@ class _Page1State extends State<Page1> {
                       crossAxisCount: 4),
                   itemCount: menuUtama.length,
                   itemBuilder: (context, index) {
-                    return Card(
-                      color: Colors.green,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Center(
-                          child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Icon(menuUtama[index]['icon']),
-                          Text('${menuUtama[index]['nama']}'),
-                        ],
-                      )),
+                    return GestureDetector(
+                      onTap: () {
+                        if (index == 0) {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => ListProduk()));
+                        }
+                      },
+                      child: Card(
+                        color: Colors.green,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25)),
+                        child: Center(
+                            child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(menuUtama[index]['icon']),
+                            Text('${menuUtama[index]['nama']}'),
+                          ],
+                        )),
+                      ),
                     );
                   }),
             ),
@@ -70,23 +78,15 @@ class _Page1State extends State<Page1> {
                             SizedBox(
                               height: 100,
                               width: 100,
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (_) => ListProduk()));
-                                },
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Icon(menuKasir[index]['icon']),
-                                      Text(menuKasir[index]['nama'])
-                                    ],
-                                  ),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(menuKasir[index]['icon']),
+                                    Text(menuKasir[index]['nama'])
+                                  ],
                                 ),
                               ),
                             ),
